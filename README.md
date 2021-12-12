@@ -1,0 +1,1 @@
+The following is a simple banking application designed to better my understanding of CMake and OOP.
