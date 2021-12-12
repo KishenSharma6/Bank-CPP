@@ -1,2 +1,5 @@
 #Ignore Build Files from CMAKE
 build/
+
+# Ignore Mac specific files
+.DS_Store
