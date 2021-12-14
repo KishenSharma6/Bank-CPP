@@ -16,13 +16,7 @@ class Customer{
 
         }
 
-        void Deposit(float amount){
-            wallet -= amount;
-        }
 
-        void Withdrawal(float amount){
-            wallet += amount;
-        }
 
 
 
