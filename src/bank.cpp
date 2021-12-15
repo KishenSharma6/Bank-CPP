@@ -1,4 +1,5 @@
 #include <iostream>
+#include "headers/bank.h"
 
 class Account{
     private:
@@ -14,7 +15,8 @@ class Account{
         } else{
         balance= x;
         bankName= y;
-        checking= z;};
+        checking= z;
+        };
 
     }
 
