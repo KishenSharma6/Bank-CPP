@@ -1,5 +1,5 @@
 #Ignore ToDo.txt
-ToDo.txt
+ToDo.md
 
 #Ignore Build Files from CMAKE
 build/
