@@ -1,1 +1,0 @@
-add_library(transactions ../src/transactions.cpp)
