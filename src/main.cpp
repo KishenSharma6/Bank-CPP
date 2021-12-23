@@ -1,8 +1,10 @@
 #include <iostream>
-#include "headers/bank.h"
-
+#include "../include/transactions.h"
 
 int main(){
-    Account(33.43, "Wells Fargo", true) acct1;
+    std::cout << "Runs" << std::endl;
+    // Account(1500.00, "Wells Fargo", true) acct1;
+    // acct1.Deposit(2000);
+    // std::cout << "User has $" << acct1.balance << " in their accoutn" << std::endl; 
     return 0;
 }

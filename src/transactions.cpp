@@ -1,5 +1,5 @@
 #include <iostream>
-#include "headers/transactions.h"
+#include "include/transactions.h"
 
 class Account{
     private:
@@ -9,14 +9,16 @@ class Account{
         std::string bankName;
         bool checking;
 
-    Account(float x, std::string y, bool z){
+    
+    
+    Account::Account(float x, std::string y, bool z){
         if (x < 0){
             std::cout << "Balance must be > 0" << std::endl;
         } else{
         balance= x;
         bankName= y;
         checking= z;
-        };
+        }
 
     }
 
