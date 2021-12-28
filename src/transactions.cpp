@@ -1,40 +1,17 @@
 #include <iostream>
-#include "include/transactions.h"
+#include "../include/transactions.h"
 
-class Account{
-    private:
-        float balance;
-    
-    public:
-        std::string bankName;
-        bool checking;
+Account::Account(float x){
+    balance= x;
+}
+int Account::deposit(float amount){
+    balance += amount;
+    std::cout << "New Balance: " << balance << std::endl;
+    return 0;
+}
 
-    
-    
-    Account::Account(float x, std::string y, bool z){
-        if (x < 0){
-            std::cout << "Balance must be > 0" << std::endl;
-        } else{
-        balance= x;
-        bankName= y;
-        checking= z;
-        }
-
-    }
-
-    ~Account();
-
-    void Deposit(float amount){
-        balance += amount;
-    }
-
-    float Withdrawal(float amount){
-        if (amount < balance){
-            balance -= amount;
-            return amount;
-        } else {
-            std::cout << "Not enough funds in account"<< std::endl;
-        };
-    }
-
+int Account::withdraw(float amount){
+    balance -= amount;
+    std::cout << "New Balance: " << balance << std::endl;
+    return 0;
 }
