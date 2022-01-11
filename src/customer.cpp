@@ -1,23 +1,18 @@
 #include <iostream>
-#include <string>
+#include "../include/customer.h"
 
-class Customer{
-    private:
-        int wallet;
-    public:
-        std::string name;
-        int age;
-    
-        Customer(int x, std::string y, int z){
-            //Constructor
-            wallet = x;
-            name = y;
-            age= z;
+ Customer::Customer(std::string b, std::string c, int d){
+     //atm_pin= a;
+     name= b;
+     occupation= c;
+     age= d;
+ }
 
-        }
+void Customer::introduction(){
+    std::cout<< "Name: "<< name<< "\nOccupation: "<< occupation << "\nAge: " << age << std::endl;
+}
 
 
 
 
 
-};
