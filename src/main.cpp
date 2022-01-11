@@ -1,10 +1,12 @@
 #include <iostream>
 #include "../include/transactions.h"
+#include "../include/customer.h"
 
 int main(){
-    std::cout << "Runs" << std::endl;
-    // Account(1500.00, "Wells Fargo", true) acct1;
-    // acct1.Deposit(2000);
-    // std::cout << "User has $" << acct1.balance << " in their accoutn" << std::endl; 
+    Customer cust1("Chad", "Engineer", 31);
+    cust1.introduction();
+    Account acct1(15.11, "Wells Fargo"); 
+    acct1.deposit(100);
+    acct1.aboutAccount();
     return 0;
 }
