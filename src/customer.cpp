@@ -1,8 +1,8 @@
 #include <iostream>
 #include "../include/customer.h"
 
- Customer::Customer(std::string b, std::string c, int d){
-     //atm_pin= a;
+ Customer::Customer(int a, std::string b, std::string c, int d){
+     atm_pin= a;
      name= b;
      occupation= c;
      age= d;
