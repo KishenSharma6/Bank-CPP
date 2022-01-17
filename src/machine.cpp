@@ -20,6 +20,7 @@ int create_pin(){
     } else{
         std::cout << "Incorrect pin, please try again" << std::endl;
         create_pin();
+        return 0;
     };
 };
 
@@ -35,6 +36,8 @@ int verify_pin(int unverified_pin){
     } else{
         std::cout << "Pin is unverified, please start again" << std::endl;
         create_pin();
+        return 0;
+    
     };
 
 };
