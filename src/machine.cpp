@@ -34,7 +34,7 @@ int verify_pin(int unverified_pin){
         return pin;
     } else{
         std::cout << "Pin is unverified, please start again" << std::endl;
-        return 0
-    }
+        create_pin();
+    };
 
 };
