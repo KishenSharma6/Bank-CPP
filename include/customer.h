@@ -5,14 +5,12 @@
 
 class Customer{
     private:
-        int atm_pin;
+        int atm_pin= 1234;
     public:
         std::string name;
-        std::string occupation;
-        int age;
+        
 
-    Customer(int a, std::string b, std::string c, int d);
-    void introduction();
+    Customer(int a, std::string b);
 
 };
     

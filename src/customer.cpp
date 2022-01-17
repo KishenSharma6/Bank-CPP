@@ -1,16 +1,18 @@
 #include <iostream>
 #include "../include/customer.h"
+#include "../include/machine.h"
 
- Customer::Customer(int a, std::string b, std::string c, int d){
-     atm_pin= a;
-     name= b;
-     occupation= c;
-     age= d;
+ Customer::Customer(std::string a){
+     
+    name= a;
+    int verified_pin= create_pin();
+    atm_pin= verified_pin;
+
+    std::cout << "New customer " << name << " created" << std::endl;
+
  }
 
-void Customer::introduction(){
-    std::cout<< "Name: "<< name<< "\nOccupation: "<< occupation << "\nAge: " << age << std::endl;
-}
+
 
 
 
