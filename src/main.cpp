@@ -3,7 +3,7 @@
 #include "../include/customer.h"
 
 int main(){
-    Customer cust1("Chad", "Engineer", 31);
+    Customer cust1(1234,"Chad", "Engineer", 31);
     cust1.introduction();
     Account acct1(15.11, "Wells Fargo"); 
     acct1.deposit(100);
