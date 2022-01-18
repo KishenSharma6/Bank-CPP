@@ -10,7 +10,7 @@ class Customer{
         std::string name;
         
 
-    Customer(int a, std::string b);
+    Customer(std::string b);
 
 };
     

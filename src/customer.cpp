@@ -3,11 +3,8 @@
 #include "../include/machine.h"
 
  Customer::Customer(std::string a){
-     
     name= a;
-    int verified_pin= create_pin();
-    atm_pin= verified_pin;
-
+    atm_pin= create_pin();
     std::cout << "New customer " << name << " created" << std::endl;
 
  }
