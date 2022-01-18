@@ -14,6 +14,7 @@ class Customer{
     Customer(std::string a, float b);
     void visit_bank();
 
+
 };
     
 #endif

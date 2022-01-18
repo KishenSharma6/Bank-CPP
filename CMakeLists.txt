@@ -6,7 +6,10 @@ set(SOURCES src/main.cpp
             src/transactions.cpp 
             include/transactions.h
             src/customer.cpp
-            include/customer.h)
+            include/customer.h
+            src/machine.cpp
+            include/machine.h
+            )
 
             add_executable(${PROJECT_NAME} ${SOURCES})
 
