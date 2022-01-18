@@ -8,12 +8,12 @@ public:
     float balance;
     std::string bankName;
     
-    Account(float x, std::string y);
+    // Account(float x, std::string y);
     int deposit(float amount);
 
     int withdraw(float amount);
 
-    int aboutAccount();
+    void print_receipt();
 
 };
 #endif
