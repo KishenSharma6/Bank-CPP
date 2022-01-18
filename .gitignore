@@ -6,3 +6,6 @@ build/
 
 # Ignore Mac specific files
 .DS_Store
+
+#Ignore vscode files
+.vscode/
