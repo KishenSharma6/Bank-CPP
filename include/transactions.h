@@ -9,9 +9,9 @@ public:
     std::string bankName;
     
     // Account(float x, std::string y);
-    int deposit(float amount);
+    int deposit(float amount, float balance);
 
-    int withdraw(float amount);
+    int withdraw(float amount, float balance);
 
     void print_receipt();
 

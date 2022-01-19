@@ -1,4 +1,6 @@
 #include "../include/machine.h"
+#include "../include/transactions.h"
+
 #include <iostream>
 
 void welcome_menu(){
@@ -20,7 +22,17 @@ void welcome_menu(){
 
         std::cin >> selection;
 
-        
+        switch(selection){
+            case 1:
+                create_pin();
+                break;
+            case 2:
+                deposit();
+                break
+                
+            
+
+        } 
 
     } while (selection <= 5);
 
