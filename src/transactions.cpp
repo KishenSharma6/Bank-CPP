@@ -7,13 +7,13 @@
 // }
 float deposit(float amount, float balance){
     balance += amount;
-    std::cout << "New Balance: " << balance << std::endl;
+    print_receipt(balance);
     return balance;
 }
 
 float withdraw(float amount, float balance){
     balance -= amount;
-    std::cout << "New Balance: " << balance << std::endl;
+    print_receipt(balance);
     return balance;
 }
 
