@@ -2,18 +2,10 @@
 #define transactions_h
 
 #include <iostream>
-//contain function/class declaration
-class Account{
-public:
-    float balance;
-    std::string bankName;
-    
-    // Account(float x, std::string y);
-    int deposit(float amount, float balance);
+   
+// Account(float x, std::string y);
+float deposit(float amount, float balance);
+float withdraw(float amount, float balance);
+void print_receipt();
 
-    int withdraw(float amount, float balance);
-
-    void print_receipt();
-
-};
 #endif
