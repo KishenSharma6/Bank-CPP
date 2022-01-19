@@ -27,7 +27,7 @@ void welcome_menu(){
                 create_pin();
                 break;
             case 2:
-                deposit();
+                withdraw();
                 break
                 
             
