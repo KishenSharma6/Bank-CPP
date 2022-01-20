@@ -5,19 +5,15 @@
 //     balance= x;
 //     bankName= y;
 // }
-float deposit(float amount, float balance){
-    balance += amount;
-    print_receipt(balance);
-    return balance;
+int deposit(){
+    return 0;
 }
 
-float withdraw(float amount, float balance){
-    balance -= amount;
-    print_receipt(balance);
-    return balance;
+int withdraw(){
+    return 0;
 }
 
-void print_receipt(float balance){
-    std::cout << "New Balance: " << balance << std::endl;
+int print_receipt(){
+    return 0;
 
 }
