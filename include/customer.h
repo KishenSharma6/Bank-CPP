@@ -3,18 +3,7 @@
 
 #include <iostream>
 
-class Customer{
-    private:
-        int atm_pin= 1234;
-    public:
-        std::string name;
-        float wallet = 0.00;
-        
+//void visit_bank();
 
-    Customer(std::string a, float b);
-    void visit_bank();
-
-
-};
-    
+int get_customer_info();    
 #endif
