@@ -2,9 +2,10 @@
 #define transactions_h
 
 #include <iostream>
-   
-float deposit(float amount, float balance);
-float withdraw(float amount, float balance);
+
+// Account(float x, std::string y);
+int deposit();
+int withdraw();
 void print_receipt();
 
 #endif
