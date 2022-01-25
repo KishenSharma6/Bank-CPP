@@ -1,5 +1,5 @@
 #include <iostream>
-#include <ctime>
+#include <fstream>
 
 #include "../include/customer.h"
 #include "../include/machine.h"
@@ -26,6 +26,7 @@
 
 // should we init a customer object that holds name, DOB, and pin? how else can we store this data?
  int get_customer_info(){
+     //Get Customer Name + Pin
     std::string first_name;
     std::string last_name;
          
@@ -40,3 +41,38 @@
     return 0;
  }
 
+int generate_account(){
+    //Generate randome Account number for user
+    //Check to make sure this doesn't exist in database!!!
+
+    int acct_num;
+    srand(time(0));
+
+    acct_num = rand() % 89999 + 10000;
+    std::cout<< acct_num;
+    return acct_num;
+
+}
+
+
+int write_user_data(){
+    //write customer data to txt file
+    // account number, first, last, balance, pin
+    std::ofstream outfile;
+
+    outfile.open("file.txt"); // open file
+    if (outfile.is_open()) //confirm file opened
+    {
+        outfile << "kishen sharma";
+        outfile.close()
+        
+    }
+    
+
+
+
+    return 0;
+}
+    else {
+        std::cout "Error";
+    }
