@@ -28,7 +28,7 @@
     
     std::cout << "Your account set up has been completed, we will return you to the main menu" << std::endl;
 
-    //write to txt function
+    //write to .txt function
     return 0;
  }
 
