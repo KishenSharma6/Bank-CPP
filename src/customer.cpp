@@ -1,28 +1,9 @@
 #include <iostream>
 #include <fstream>
+#include <stdlib.h>
 
 #include "../include/customer.h"
 #include "../include/machine.h"
-
-// void visit_bank(){
-//     std::cout << "Would you like to visit the ATM (Y/N)?" << std::endl;
-//     char response;
-//     std::cin >> response;
-
-//     while (toupper(response) != 'Y' | toupper(response) != 'N'){
-//         std::cout <<"Invalid response.\N Would you like to visit the ATM (Y/N)?:" << std::end;
-//         std::cin >> response;
-        
-//         if (toupper(response) == 'N'){
-//             std::cout << "Have a nice day!" << std::endl;
-//         } else if (toupper(response) == 'Y'){
-//             welcome_menu();
-//             break;
-//         }
-
-//     }
-//  }
-
 
 // should we init a customer object that holds name, DOB, and pin? how else can we store this data?
  int get_customer_info(){
@@ -78,3 +59,43 @@ int write_user_data(std::string first, std::string last, int acct_num, int pin){
     
 }
     
+int create_pin(){
+    std::cout << "Welcome customer! Please create a pin for your new checking account." << std::endl;
+    std::cout << "Pins must be a 4 digit number" << std::endl;
+    std::cout << "Please enter your pin now:" << std::endl;
+    
+    // create variable to hold pins for verification
+    int unverified_pin= 0;
+    int verified_pin= 0;
+
+    std::cin >> unverified_pin;
+
+    //Check if initial pin meets requirements
+    if (unverified_pin > 999 & unverified_pin <= 9999){
+        verified_pin= verify_pin(unverified_pin);
+        return verified_pin;
+        
+    } else{
+        std::cout << "Incorrect pin, please try again" << std::endl;
+        create_pin();
+        return 0;
+    };
+};
+
+int verify_pin(int unverified_pin){
+    // Verify customer correctly remembers pin
+    int pin= 0;
+    std::cout << "Please verify pin:" << std::endl;
+    std::cin >> pin;
+
+    if (unverified_pin == pin){
+        std::cout << "Pin verified" << std::endl;
+        return pin;
+    } else{
+        std::cout << "Pin is unverified, please start again" << std::endl;
+        create_pin();
+        return 0;
+    
+    };
+
+};
