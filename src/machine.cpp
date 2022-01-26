@@ -1,8 +1,12 @@
 #include "../include/machine.h"
-#include "../include/transactions.h"
+// #include "../include/customer.h"
+// #include "../include/transactions.h"
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <string>
+#include <vector>
 
 void welcome_menu(){
     int selection;
@@ -25,20 +29,21 @@ void welcome_menu(){
 
         switch(selection){
             case 1:
-                create_pin();
+                //get_customer_info();
                 break;
             case 2:
-                withdraw();
-                break
-                
-            
-
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;  
         } 
 
     } while (selection <= 5);
-
+    std::cout << "Thank you for stopping by Sharma Credit Union, good bye!" << std::endl;
 }
-
 int write_user_data(std::string first, std::string last, int acct_num, int pin){
     //write customer data to txt file
     // account number, first, last, balance, pin
@@ -47,11 +52,74 @@ int write_user_data(std::string first, std::string last, int acct_num, int pin){
     outfile.open("../data/accounts.txt", std::ios::app); // open file
     if (outfile.is_open()) //confirm file opened
     {
-        outfile << acct_num;
-        outfile.close();
-        
+        outfile << acct_num << "," << pin << "," << first << "," << last << std::endl;
+        outfile.close();       
     }
     else
         std::cerr << "Error writing to database";
+    return 0;
     
+}
+
+
+bool verify_account(int acct_number){
+    //Check if acct number exists in database
+    std::fstream database;
+
+    database.open("../data/accounts.txt", std::ios::in);
+    if (database.is_open())
+    {   
+        std::string line;
+        while(getline(database, line))
+        {   
+            std::stringstream lineStream(line);
+            std::string token;
+            while(lineStream >> token)
+            {
+                if (std::stoi(token) == acct_number)
+                {
+                    return true;
+                    break;
+                }
+            }
+        }
+    } 
+    else  
+        std::cout << "Error opening file";
+    return false;
+}
+
+bool pin_verification(int acct_number, int pin){ 
+    //Check if pin is valid 
+    std::fstream database;
+    std::vector<std::string> tokens;
+
+    database.open("../data/accounts.txt", std::ios::in);
+    if (database.is_open())
+    {   
+        std::string line;
+        while(getline(database, line))
+        {   
+            std::stringstream lineStream(line);
+            std::string token;
+            while(lineStream >> token)
+            {
+                tokens.push_back(token);
+                //search for acct num in vector of tokens for line
+            }
+            auto i = std::find(tokens.begin(), tokens.end(), std::to_string(acct_number));
+            if (i == tokens.end())
+            {
+                return false;
+            }
+            else
+                auto index= std::distance(tokens.begin(), i);
+                index= std::stoi(index);
+                index +=1;
+                return tokens[index] == std::to_string(pin);
+        }
+    } 
+    else  
+        std::cout << "Error opening file";
+    return false;
 }
