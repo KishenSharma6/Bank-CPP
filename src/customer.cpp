@@ -29,6 +29,8 @@
      //Get Customer Name + Pin
     std::string first_name;
     std::string last_name;
+    int acct_number = generate_account();
+    int pin= 1234;
          
     std::cout << "Before we can begin opening your new checking account, tell us about yourself"<< std::endl;
     std::cout << "What is your first name? \n" << std::endl;
@@ -37,6 +39,10 @@
     std::cout << "What is your last name?\n" << std::endl;
     std::cin >> last_name;
 
+    std::cout << "Thank you and welcome to Sharma Credit Union " << first_name << std::endl;
+    std::cout << "Your new account number is "<< acct_number << std::endl;
+
+    std::cout << "Finally, we need to create a pin for your account" << std::endl;
 
     return 0;
  }
@@ -55,24 +61,20 @@ int generate_account(){
 }
 
 
-int write_user_data(){
+int write_user_data(std::string first, std::string last, int acct_num, int pin){
     //write customer data to txt file
     // account number, first, last, balance, pin
     std::ofstream outfile;
 
-    outfile.open("file.txt"); // open file
+    outfile.open("../data/accounts.txt", std::ios::app); // open file
     if (outfile.is_open()) //confirm file opened
     {
-        outfile << "kishen sharma";
-        outfile.close()
+        outfile << acct_num;
+        outfile.close();
         
     }
+    else
+        std::cerr << "Error writing to database";
     
-
-
-
-    return 0;
 }
-    else {
-        std::cout "Error";
-    }
+    
