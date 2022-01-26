@@ -24,8 +24,9 @@
     std::cout << "Your new account number is "<< acct_number << std::endl;
 
     std::cout << "Finally, we need to create a pin for your account" << std::endl;
-
-    return 0;
+    pin= create_pin();
+    
+    std::cout << "Your account set up has been completed, we will return you to the main menu" << std::endl;
  }
 
 int generate_account(){
@@ -40,27 +41,8 @@ int generate_account(){
     return acct_num;
 
 }
-
-
-int write_user_data(std::string first, std::string last, int acct_num, int pin){
-    //write customer data to txt file
-    // account number, first, last, balance, pin
-    std::ofstream outfile;
-
-    outfile.open("../data/accounts.txt", std::ios::app); // open file
-    if (outfile.is_open()) //confirm file opened
-    {
-        outfile << acct_num;
-        outfile.close();
-        
-    }
-    else
-        std::cerr << "Error writing to database";
-    
-}
-    
+   
 int create_pin(){
-    std::cout << "Welcome customer! Please create a pin for your new checking account." << std::endl;
     std::cout << "Pins must be a 4 digit number" << std::endl;
     std::cout << "Please enter your pin now:" << std::endl;
     
