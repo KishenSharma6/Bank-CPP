@@ -30,17 +30,25 @@
  }
 
 int generate_account(){
-    //Generate randome Account number for user
-    //Check to make sure this doesn't exist in database!!!
+    //Generate random Account number for user
+        // Checks database to make sure no duplicate account numbers are issued
 
     int acct_num;
     srand(time(0));
 
     acct_num = rand() % 89999 + 10000;
-    std::cout<< acct_num;
-    return acct_num;
+    //make sure acc_num does not exist in data base
+    verify_account(acct_num);
+    if (verify_account(acct_num) == 0)
+    {
+        return acct_num;
+    }
+    else // test to make sure this doesnt cause an infinite looop
+        generate_account();
 
 }
+
+
    
 int create_pin(){
     std::cout << "Pins must be a 4 digit number" << std::endl;
