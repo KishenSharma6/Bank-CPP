@@ -11,7 +11,7 @@
     std::string first_name;
     std::string last_name;
     int acct_number = generate_account();
-    int pin= 1234;
+    int pin= 12345;
          
     std::cout << "Before we can begin opening your new checking account, tell us about yourself"<< std::endl;
     std::cout << "What is your first name? \n" << std::endl;
@@ -27,6 +27,9 @@
     pin= create_pin();
     
     std::cout << "Your account set up has been completed, we will return you to the main menu" << std::endl;
+
+    //write to .txt function
+    return 0;
  }
 
 int generate_account(){
