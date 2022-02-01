@@ -60,8 +60,6 @@ int write_user_data(std::string first, std::string last, int acct_num, int pin){
     return 0;
     
 }
-
-
 bool verify_account(int acct_number){
     //Check if acct number exists in database
     std::fstream database;
@@ -107,16 +105,7 @@ bool pin_verification(int acct_number, int pin){
                 tokens.push_back(token);
                 //search for acct num in vector of tokens for line
             }
-            auto i = std::find(tokens.begin(), tokens.end(), std::to_string(acct_number));
-            if (i == tokens.end())
-            {
-                return false;
-            }
-            else
-                auto index= std::distance(tokens.begin(), i);
-                index= std::stoi(index);
-                index +=1;
-                return tokens[index] == std::to_string(pin);
+            
         }
     } 
     else  
