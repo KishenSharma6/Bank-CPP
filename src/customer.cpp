@@ -29,6 +29,7 @@
     std::cout << "Your account set up has been completed, we will return you to the main menu" << std::endl;
 
     //write to .txt function
+    write_user_data(first_name, last_name, acct_number, pin);
     return 0;
  }
 
