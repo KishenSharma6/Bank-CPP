@@ -8,6 +8,11 @@
 #include <string>
 #include <vector>
 
+struct Account{
+    std::string account_number;
+    std::string pin;
+} ;
+
 void welcome_menu(){
     int selection;
     do
@@ -87,28 +92,35 @@ bool verify_account(int acct_number){
     return false;
 }
 
-bool pin_verification(int acct_number, int pin){ 
+bool pin_verification(std::string input_acct_number, std::string input_pin){ 
     //Check if pin is valid 
-    std::fstream database;
-    std::vector<std::string> tokens;
-
+    std::ifstream database;
+    std::vector<Account> accounts;
     database.open("../data/accounts.txt", std::ios::in);
     if (database.is_open())
     {   
         std::string line;
         while(getline(database, line))
-        {   
-            std::stringstream lineStream(line);
-            std::string token;
-            while(lineStream >> token)
+        {
+            auto delimiter= line.find(',');
+            if (delimiter != std::string::npos)
             {
-                tokens.push_back(token);
-                //search for acct num in vector of tokens for line
+                std::string account_number = line.substr(0, delimiter);
+			    std::string pin = line.substr(delimiter+1, delimiter -1);
+			    Account account = { account_number, pin };
+			    accounts.push_back(account);
             }
-            
         }
     } 
     else  
         std::cout << "Error opening file";
+    
+    for (const Account &a: accounts)
+    {
+        if (a.account_number == input_acct_number && a.pin == input_pin)
+        {
+            return true;
+        }
+    }
     return false;
 }
