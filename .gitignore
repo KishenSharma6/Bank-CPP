@@ -9,3 +9,6 @@ build/
 
 #Ignore vscode files
 .vscode/
+
+#Ignore Database
+data/
