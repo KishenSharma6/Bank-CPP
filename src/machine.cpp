@@ -14,6 +14,10 @@ struct Account{
 } ;
 
 void welcome_menu(){
+    /* 
+    Front End Menu
+    Takes user input and executes appropriate function.
+    */
     int selection;
     do
     {
@@ -46,12 +50,15 @@ void welcome_menu(){
                 break;  
         } 
 
-    } while (selection <= 5);
+    } while (selection < 5);
     std::cout << "Thank you for stopping by Sharma Credit Union, good bye!" << std::endl;
 }
 int write_user_data(std::string first, std::string last, int acct_num, int pin){
-    //write customer data to txt file
-    // account number, first, last, balance, pin
+    /* 
+    Collect & write user data
+    Takes user inputs (first and last name, system generated account number, and pin)
+    and saves then to accounts.txt for later access
+    */
     std::ofstream outfile;
     std::string path = "/Users/ksharma/Documents/ML Engineer/Machine Learning/Projects/C++ Sandbox/Bank/data/accounts.txt";
     outfile.open(path, std::ios::app); // open file
@@ -67,7 +74,9 @@ int write_user_data(std::string first, std::string last, int acct_num, int pin){
     
 }
 bool verify_account(int acct_number){
-    //Check if acct number exists in database
+    /*
+    Returns true if system generated account number already exists in accounts.txt.
+    */
     std::fstream database;
     std::string path= "/Users/ksharma/Documents/ML Engineer/Machine Learning/Projects/C++ Sandbox/Bank/data/accounts.txt";
     database.open(path, std::ios::in);
@@ -95,7 +104,7 @@ bool verify_account(int acct_number){
 }
 
 bool pin_verification(std::string input_acct_number, std::string input_pin){ 
-    //Check if pin is valid 
+    /*Search account.txt to verify pin matches input account number*/
     std::ifstream database;
     std::vector<Account> accounts;
     std::string path = "/Users/ksharma/Documents/ML Engineer/Machine Learning/Projects/C++ Sandbox/Bank/data/accounts.txt";
