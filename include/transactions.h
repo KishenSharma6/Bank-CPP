@@ -6,6 +6,6 @@
 // Account(float x, std::string y);
 int deposit();
 int withdraw();
-void print_receipt();
+int print_receipt();
 
 #endif
