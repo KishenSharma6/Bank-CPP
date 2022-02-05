@@ -49,7 +49,7 @@ int generate_account(){
     }
     else // test to make sure this doesnt cause an infinite looop
         generate_account();
-
+    return 0;
 }
 
 

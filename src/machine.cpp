@@ -1,6 +1,6 @@
-#include "../include/machine.h"
-// #include "../include/customer.h"
-// #include "../include/transactions.h"
+#include "../include/machine.h" 
+#include "../include/customer.h"
+#include "../include/transactions.h"
 
 #include <iostream>
 #include <fstream>
@@ -34,7 +34,7 @@ void welcome_menu(){
 
         switch(selection){
             case 1:
-                //get_customer_info();
+                get_customer_info();
                 break;
             case 2:
                 break;
@@ -53,8 +53,8 @@ int write_user_data(std::string first, std::string last, int acct_num, int pin){
     //write customer data to txt file
     // account number, first, last, balance, pin
     std::ofstream outfile;
-
-    outfile.open("../data/accounts.txt", std::ios::app); // open file
+    std::string path = "/Users/ksharma/Documents/ML Engineer/Machine Learning/Projects/C++ Sandbox/Bank/data/accounts.txt";
+    outfile.open(path, std::ios::app); // open file
     if (outfile.is_open()) //confirm file opened
     {
         outfile << acct_num << "," << pin << "," << first << "," << last << std::endl;
@@ -62,14 +62,15 @@ int write_user_data(std::string first, std::string last, int acct_num, int pin){
     }
     else
         std::cerr << "Error writing to database";
+    outfile.close();
     return 0;
     
 }
 bool verify_account(int acct_number){
     //Check if acct number exists in database
     std::fstream database;
-
-    database.open("../data/accounts.txt", std::ios::in);
+    std::string path= "/Users/ksharma/Documents/ML Engineer/Machine Learning/Projects/C++ Sandbox/Bank/data/accounts.txt";
+    database.open(path, std::ios::in);
     if (database.is_open())
     {   
         std::string line;
@@ -89,6 +90,7 @@ bool verify_account(int acct_number){
     } 
     else  
         std::cout << "Error opening file";
+    database.close();
     return false;
 }
 
@@ -96,7 +98,8 @@ bool pin_verification(std::string input_acct_number, std::string input_pin){
     //Check if pin is valid 
     std::ifstream database;
     std::vector<Account> accounts;
-    database.open("../data/accounts.txt", std::ios::in);
+    std::string path = "/Users/ksharma/Documents/ML Engineer/Machine Learning/Projects/C++ Sandbox/Bank/data/accounts.txt";
+    database.open(path, std::ios::in);
     if (database.is_open())
     {   
         std::string line;
@@ -114,7 +117,7 @@ bool pin_verification(std::string input_acct_number, std::string input_pin){
     } 
     else  
         std::cout << "Error opening file";
-    
+    database.close();
     for (const Account &a: accounts)
     {
         if (a.account_number == input_acct_number && a.pin == input_pin)
