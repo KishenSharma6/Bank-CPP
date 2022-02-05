@@ -4,6 +4,8 @@
 #include "../include/machine.h"
 
 int main(){
-    Customer cust1("Chad");
+    /* Initialize front end of program
+    */
+    welcome_menu();
     return 0;
 }

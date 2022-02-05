@@ -1,6 +1,6 @@
-#include "../include/machine.h"
-// #include "../include/customer.h"
-// #include "../include/transactions.h"
+#include "../include/machine.h" 
+#include "../include/customer.h"
+#include "../include/transactions.h"
 
 #include <iostream>
 #include <fstream>
@@ -8,7 +8,16 @@
 #include <string>
 #include <vector>
 
+struct Account{
+    std::string account_number;
+    std::string pin;
+} ;
+
 void welcome_menu(){
+    /* 
+    Front End Menu
+    Takes user input and executes appropriate function.
+    */
     int selection;
     do
     {
@@ -29,7 +38,7 @@ void welcome_menu(){
 
         switch(selection){
             case 1:
-                //get_customer_info();
+                get_customer_info();
                 break;
             case 2:
                 break;
@@ -41,15 +50,18 @@ void welcome_menu(){
                 break;  
         } 
 
-    } while (selection <= 5);
+    } while (selection < 5);
     std::cout << "Thank you for stopping by Sharma Credit Union, good bye!" << std::endl;
 }
 int write_user_data(std::string first, std::string last, int acct_num, int pin){
-    //write customer data to txt file
-    // account number, first, last, balance, pin
+    /* 
+    Collect & write user data
+    Takes user inputs (first and last name, system generated account number, and pin)
+    and saves then to accounts.txt for later access
+    */
     std::ofstream outfile;
-
-    outfile.open("../data/accounts.txt", std::ios::app); // open file
+    std::string path = "/Users/ksharma/Documents/ML Engineer/Machine Learning/Projects/C++ Sandbox/Bank/data/accounts.txt";
+    outfile.open(path, std::ios::app); // open file
     if (outfile.is_open()) //confirm file opened
     {
         outfile << acct_num << "," << pin << "," << first << "," << last << std::endl;
@@ -57,16 +69,17 @@ int write_user_data(std::string first, std::string last, int acct_num, int pin){
     }
     else
         std::cerr << "Error writing to database";
+    outfile.close();
     return 0;
     
 }
-
-
 bool verify_account(int acct_number){
-    //Check if acct number exists in database
+    /*
+    Returns true if system generated account number already exists in accounts.txt.
+    */
     std::fstream database;
-
-    database.open("../data/accounts.txt", std::ios::in);
+    std::string path= "/Users/ksharma/Documents/ML Engineer/Machine Learning/Projects/C++ Sandbox/Bank/data/accounts.txt";
+    database.open(path, std::ios::in);
     if (database.is_open())
     {   
         std::string line;
@@ -86,40 +99,40 @@ bool verify_account(int acct_number){
     } 
     else  
         std::cout << "Error opening file";
+    database.close();
     return false;
 }
 
-bool pin_verification(int acct_number, int pin){ 
-    //Check if pin is valid 
-    std::fstream database;
-    std::vector<std::string> tokens;
-
-    database.open("../data/accounts.txt", std::ios::in);
+bool pin_verification(std::string input_acct_number, std::string input_pin){ 
+    /*Search account.txt to verify pin matches input account number*/
+    std::ifstream database;
+    std::vector<Account> accounts;
+    std::string path = "/Users/ksharma/Documents/ML Engineer/Machine Learning/Projects/C++ Sandbox/Bank/data/accounts.txt";
+    database.open(path, std::ios::in);
     if (database.is_open())
     {   
         std::string line;
         while(getline(database, line))
-        {   
-            std::stringstream lineStream(line);
-            std::string token;
-            while(lineStream >> token)
+        {
+            auto delimiter= line.find(',');
+            if (delimiter != std::string::npos)
             {
-                tokens.push_back(token);
-                //search for acct num in vector of tokens for line
+                std::string account_number = line.substr(0, delimiter);
+			    std::string pin = line.substr(delimiter+1, delimiter -1);
+			    Account account = { account_number, pin };
+			    accounts.push_back(account);
             }
-            auto i = std::find(tokens.begin(), tokens.end(), std::to_string(acct_number));
-            if (i == tokens.end())
-            {
-                return false;
-            }
-            else
-                auto index= std::distance(tokens.begin(), i);
-                index= std::stoi(index);
-                index +=1;
-                return tokens[index] == std::to_string(pin);
         }
     } 
     else  
         std::cout << "Error opening file";
+    database.close();
+    for (const Account &a: accounts)
+    {
+        if (a.account_number == input_acct_number && a.pin == input_pin)
+        {
+            return true;
+        }
+    }
     return false;
 }
