@@ -12,7 +12,7 @@ int deposit(){
     if (verify_account(user_acct) == 0)
     {
         std::cout<< "Incorrect account number" << std::endl;
-        deposit();
+        deposit();       
     }
     /*Verify pin*/
     int user_pin= 0;
