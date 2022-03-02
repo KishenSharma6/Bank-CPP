@@ -26,8 +26,8 @@ void welcome_menu(){
         << "Welcome to Sharma Credit Union\n"
         << "Please select an option from the menu below to get started:\n"
         << " 1 - Open new checking account.\n"
-        << " 2 - Make withdrawal from account.\n"
-        << " 3 - Make a deposit into your account. \n"
+        << " 2 - Make a deposit into your account.\n"
+        << " 3 - Make a withdrawal from your account. \n"
         << " 4 - Get your account balance. \n"
         << " 5 - Exit \n"
         << "=====================================\n"
@@ -50,10 +50,10 @@ void welcome_menu(){
                 break;  
         } 
 
-    } while (selection < 5);
+    } while (selection <= 5);
     std::cout << "Thank you for stopping by Sharma Credit Union, good bye!" << std::endl;
 }
-int write_user_data(std::string first, std::string last, int acct_num, int pin){
+int write_user_data(std::string first, std::string last, int acct_num, float balance, int pin){
     /* 
     Collect & write user data
     Takes user inputs (first and last name, system generated account number, and pin)
@@ -64,7 +64,7 @@ int write_user_data(std::string first, std::string last, int acct_num, int pin){
     outfile.open(path, std::ios::app); // open file
     if (outfile.is_open()) //confirm file opened
     {
-        outfile << acct_num << "," << pin << "," << first << "," << last << std::endl;
+        outfile << acct_num << "," << pin << "," << balance << "," << first << "," << last << std::endl;
         outfile.close();       
     }
     else
@@ -73,7 +73,7 @@ int write_user_data(std::string first, std::string last, int acct_num, int pin){
     return 0;
     
 }
-bool verify_account(int acct_number){
+bool verify_account(std::string acct_number){
     /*
     Returns true if system generated account number already exists in accounts.txt.
     */
@@ -89,7 +89,7 @@ bool verify_account(int acct_number){
             std::string token;
             while(lineStream >> token)
             {
-                if (std::stoi(token) == acct_number)
+                if (token == acct_number)
                 {
                     return true;
                     break;
@@ -135,4 +135,50 @@ bool pin_verification(std::string input_acct_number, std::string input_pin){
         }
     }
     return false;
+}
+
+int user_sign_in(std::string acct_num, std::string pin){
+    
+
+    /*verify acct_num and pin*/
+    int user_attempts= 0;
+    while (user_attempts != 3)
+    {
+        if (verify_account(acct_num) == false)
+        {
+            user_attempts ++;
+            std::cout << "Incorrect account number, please re-enter your account number:" << std::endl;
+            std::cin >> acct_num;
+        }
+        else
+            break;
+    }
+    if (user_attempts == 3)
+    {
+        std::cout << "Too many attempts have been made, returning to main menu" << std::endl;
+        welcome_menu();
+
+    }
+
+    user_attempts= 0;
+    
+    while (user_attempts != 3)
+    {
+        if (pin_verification(acct_num, pin) == false)
+        {
+            user_attempts ++;
+            std::cout << "Incorrect pin, please re-enter your pin:" << std::endl;
+            std::cin >> pin;
+        }
+        else
+            break;
+    }
+    if (user_attempts == 3)
+    {
+        std::cout << "Too many attempts have been made, returning to main menu" << std::endl;
+        welcome_menu();
+    }
+
+    std::cout << "Account and pin verified" << std::endl;
+    return 0;
 }

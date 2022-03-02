@@ -12,10 +12,20 @@
     */
     std::string first_name;
     std::string last_name;
+    float init_deposit;
     int acct_number = generate_account();
     int pin= 12345;
          
-    std::cout << "Before we can begin opening your new checking account, tell us about yourself"<< std::endl;
+    std::cout << "Before we can begin opening your new checking account, a $25.00 minimum deposit is required upon activation" << std::endl;
+    std::cout << "How much would you like your initial deposit for your new account to be?" << std::endl;
+    std::cin >> init_deposit;
+    if (init_deposit < 25.00)
+    {
+        std::cout << "\nWe're sorry, you do not meet the minimum initial deposit criteria. \nReturning you to the main menu.\n" << std::endl;
+        welcome_menu();
+    }
+    // tell us about yourself"<< std::endl;
+    std::cout << "Thank you, before we can open your new checking account we need a little more information about you" <<std::endl;
     std::cout << "What is your first name?" << std::endl;
     std::cin >> first_name;
 
@@ -23,15 +33,15 @@
     std::cin >> last_name;
 
     std::cout << "Thank you and welcome to Sharma Credit Union " << first_name << std::endl;
-    std::cout << "Your new account number is "<< acct_number << std::endl;
+    std::cout << "\nYour new account number is "<< acct_number << std::endl;
 
     std::cout << "\nFinally, we need to create a pin for your account" << std::endl;
     pin= create_pin();
     
-    std::cout << "Your account set up has been completed, we will return you to the main menu \n" << std::endl;
+    std::cout << "\nYour account set up has been completed, we will return you to the main menu \n" << std::endl;
 
     /*Write customer data to accounts.txt*/
-    write_user_data(first_name, last_name, acct_number, pin);
+    write_user_data(first_name, last_name, acct_number, init_deposit,  pin);
     return 0;
  }
 int generate_account(){
