@@ -73,7 +73,7 @@ int write_user_data(std::string first, std::string last, int acct_num, float bal
     return 0;
     
 }
-bool verify_account(int acct_number){
+bool verify_account(std::string acct_number){
     /*
     Returns true if system generated account number already exists in accounts.txt.
     */
@@ -89,7 +89,7 @@ bool verify_account(int acct_number){
             std::string token;
             while(lineStream >> token)
             {
-                if (std::stoi(token) == acct_number)
+                if (token == acct_number)
                 {
                     return true;
                     break;
@@ -135,4 +135,50 @@ bool pin_verification(std::string input_acct_number, std::string input_pin){
         }
     }
     return false;
+}
+
+int user_sign_in(std::string acct_num, std::string pin){
+    
+
+    /*verify acct_num and pin*/
+    int user_attempts= 0;
+    while (user_attempts != 3)
+    {
+        if (verify_account(acct_num) == false)
+        {
+            user_attempts ++;
+            std::cout << "Incorrect account number, please re-enter your account number:" << std::endl;
+            std::cin >> acct_num;
+        }
+        else
+            break;
+    }
+    if (user_attempts == 3)
+    {
+        std::cout << "Too many attempts have been made, returning to main menu" << std::endl;
+        welcome_menu();
+
+    }
+
+    user_attempts= 0;
+    
+    while (user_attempts != 3)
+    {
+        if (pin_verification(acct_num, pin) == false)
+        {
+            user_attempts ++;
+            std::cout << "Incorrect pin, please re-enter your pin:" << std::endl;
+            std::cin >> pin;
+        }
+        else
+            break;
+    }
+    if (user_attempts == 3)
+    {
+        std::cout << "Too many attempts have been made, returning to main menu" << std::endl;
+        welcome_menu();
+    }
+
+    std::cout << "Account and pin verified" << std::endl;
+    return 0;
 }
