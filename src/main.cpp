@@ -1,7 +1,6 @@
 #include <iostream>
-#include "../include/transactions.h"
-#include "../include/customer.h"
-#include "../include/machine.h"
+#
+#include "../include/frontEnd.h"
 
 int main(){
     /* Initialize front end of program
