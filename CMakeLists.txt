@@ -3,12 +3,16 @@ set(CMAKE_CXX_STANDARD 11)
 project(Bank)
 
 set(SOURCES src/main.cpp 
-            src/transactions.cpp 
+            src/account.cpp
+            include/account.h
+            src/frontEnd.cpp
+            include/frontEnd.h
+            src/importExportData.cpp
+            include/importExportData.h
+            src/pin.cpp
+            include/pin.h
+            src/transactions.cpp
             include/transactions.h
-            src/customer.cpp
-            include/customer.h
-            src/machine.cpp
-            include/machine.h
             )
 
             add_executable(${PROJECT_NAME} ${SOURCES})

@@ -2,12 +2,16 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+
+#include "../include/account.h"
+#include "../include/frontEnd.h"
+#include "../include/importExportData.h"
+#include "../include/pin.h"
 #include "../include/transactions.h"
-#include "../include/machine.h"
 
 struct Account{
     std::string account_number;
-    std::string pin;
+    std::string balance;
 };
 
 int deposit(){
@@ -57,6 +61,9 @@ std::string read_account_balance(std::string acct_num){
             {
                 std::string account_number = line.substr(0, delimiter);
 			    std::string pin = line.substr(delimiter+1, delimiter -1);
+                std::string balance = line.substr(delimiter+1, delimiter -1);
+                std::string first = line.substr(delimiter+1, delimiter -1);
+                std::string last = line.substr(delimiter+1, delimiter -1);
 			    Account account = { account_number, pin };
 			    accounts.push_back(account);
             }
