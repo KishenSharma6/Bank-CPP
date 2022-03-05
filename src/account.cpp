@@ -1,12 +1,16 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <stdlib.h>
 
-#include "../include/customer.h"
-#include "../include/machine.h"
+#include "../include/account.h"
+#include "../include/frontEnd.h"
+#include "../include/importExportData.h"
+#include "../include/pin.h"
+
 
 // should we init a customer object that holds name, DOB, and pin? how else can we store this data?
- int get_customer_info(){
+int get_customer_info(){
     /*
     Get customer info: first, last, and pin
     */
@@ -44,19 +48,97 @@
     write_user_data(first_name, last_name, acct_number, init_deposit,  pin);
     return 0;
  }
+
 int generate_account(){
     /*Randomly generate account number for user*/
-    int acct_num;
     srand(time(0));
 
-    acct_num = rand() % 89999 + 10000;
+    int acct_num = rand() % 89999 + 10000;
+   
     /*verify acct_num does not exist already in accounts.txt*/
-    verify_account(acct_num);
-    if (verify_account(acct_num) == 0)
+    verify_account(std::to_string(acct_num));
+    if (verify_account(std::to_string(acct_num)) == 1)
     {
         return acct_num;
     }
     else // test to make sure this doesnt cause an infinite looop
         generate_account();
+        return 0;
+}
+
+bool verify_account(std::string acct_number){
+    /*
+    Returns true if system generated account number already exists in accounts.txt.
+    */
+    std::fstream database;
+    std::string path= "/Users/ksharma/Documents/ML Engineer/Machine Learning/Projects/C++ Sandbox/Bank/data/accounts.txt";
+    database.open(path, std::ios::in);
+    if (database.is_open())
+    {   
+        std::string line;
+        while(getline(database, line))
+        {   
+            std::stringstream lineStream(line);
+            std::string token;
+            while(lineStream >> token)
+            {
+                if (token == acct_number)
+                {
+                    return true;
+                    break;
+                }
+            }
+        }
+    } 
+    else  
+        std::cout << "Error opening file";
+    database.close();
+    return false;
+}
+int user_sign_in(std::string acct_num, std::string pin){
+    
+
+    /*verify acct_num and pin*/
+    int user_attempts= 0;
+    while (user_attempts != 3)
+    {
+        if (verify_account(acct_num) == false)
+        {
+            user_attempts ++;
+            std::cout << "Incorrect account number, please re-enter your account number:" << std::endl;
+            std::cin >> acct_num;
+        }
+        else
+            break;
+    }
+    if (user_attempts == 3)
+    {
+        std::cout << "Too many attempts have been made, returning to main menu" << std::endl;
+        welcome_menu();
+
+    }
+
+    user_attempts= 0;
+    
+    while (user_attempts != 3)
+    {
+        if (pin_verification(acct_num, pin) == false)
+        {
+            user_attempts ++;
+            std::cout << "Incorrect pin, please re-enter your pin:" << std::endl;
+            std::cin >> pin;
+        }
+        else
+            break;
+    }
+    if (user_attempts == 3)
+    {
+        std::cout << "Too many attempts have been made, returning to main menu" << std::endl;
+        welcome_menu();
+    }
+
+    std::cout << "Account and pin verified" << std::endl;
     return 0;
 }
+
+

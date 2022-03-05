@@ -1,12 +1,11 @@
-#ifndef customer_h
-#define customer_h
+#ifndef account_h
+#define account_h
 
 #include <iostream>
 
-//void visit_bank();
-
-int get_customer_info();   
+int get_customer_info();
 int generate_account();
-int create_pin();
-int verify_pin(int unverified_pin);
+bool verify_account(std::string acct_number);
+int user_sign_in(std::string acct_num, std::string pin);
+
 #endif

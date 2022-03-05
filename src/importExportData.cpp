@@ -2,6 +2,18 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <vector>
+
+#include "../include/account.h"
+#include "../include/frontEnd.h"
+#include "../include/importExportData.h"
+#include "../include/pin.h"
+#include "../include/transactions.h"
+
+struct Account{
+    std::string account_number;
+    std::string balance;
+};
 
 int write_user_data(std::string first, std::string last, int acct_num, float balance, int pin){
     /* 
@@ -23,3 +35,4 @@ int write_user_data(std::string first, std::string last, int acct_num, float bal
     return 0;
     
 }
+

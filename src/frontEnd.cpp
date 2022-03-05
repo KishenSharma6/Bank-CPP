@@ -6,6 +6,11 @@
 #include <string>
 #include <vector>
 
+#include "../include/account.h"
+#include "../include/frontEnd.h"
+#include "../include/importExportData.h"
+#include "../include/pin.h"
+
 void welcome_menu(){
     /* 
     Front End Menu

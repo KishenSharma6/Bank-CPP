@@ -2,8 +2,12 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+
+#include "../include/account.h"
+#include "../include/frontEnd.h"
+#include "../include/importExportData.h"
+#include "../include/pin.h"
 #include "../include/transactions.h"
-#include "../include/machine.h"
 
 struct Account{
     std::string account_number;
