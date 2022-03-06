@@ -8,7 +8,9 @@
 #include "../include/importExportData.h"
 #include "../include/pin.h"
 #include "../include/transactions.h"
+#include "../include/machine.h"
 
+<<<<<<< HEAD
 struct Account{
     std::string account_number;
     std::string balance;
@@ -33,6 +35,34 @@ int deposit(){
     std::string current_balance;
 
     
+=======
+int deposit(){
+    /*Deposit funds into user's account*/
+    int user_acct = 0;
+    std::cout << "Please enter your 5-digit account number: " << std::endl;
+    std::cin >> user_acct;
+
+    /*Verify this account exists*/
+    if (verify_account(user_acct) == 0)
+    {
+        std::cout<< "Incorrect account number" << std::endl;
+        deposit();       
+    }
+    /*Verify pin*/
+    int user_pin= 0;
+    std::cout << "Please enter your 4-digit pin:" << std::endl;
+    std::cin >> user_pin;
+
+    if (pin_verification(std::to_string(user_acct), std::to_string(user_pin)) == 0)
+    {
+        std::cout << "Pin is incorrect. Make sure you have the correct account number and try again" << std::endl;
+        deposit();
+    }
+
+    /* Get deposit amount from user*/
+    float deposit_amount= 0.00;
+
+>>>>>>> f72b61449f1e31697b575c50c17685f1a9bf6289
     return 0;
 }
 
