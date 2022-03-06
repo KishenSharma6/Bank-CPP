@@ -7,5 +7,6 @@
 int deposit();
 int withdraw();
 int print_receipt();
+std::string read_account_balance(std::string acct_num);
 
 #endif
