@@ -36,3 +36,38 @@ int write_user_data(std::string first, std::string last, int acct_num, float bal
     
 }
 
+// int update_user_data(std::string first, std::string last, int acct_num, float balance, int pin){
+//     /* 
+//     Updates user data base with new balance data after withdrawal/
+//     deposit
+//     */
+//     std::ifstream inputfile;
+//     std::ofstream outfile;
+
+//     std::string path = "/Users/ksharma/Documents/ML Engineer/Machine Learning/Projects/C++ Sandbox/Bank/data/";
+    
+//     inputfile.open(path + "temp.txt");
+//     outfile.open(path + "output.txt"); // open file
+
+//     if (outfile.is_open()) //confirm file opened
+//     {
+//         while (inputfile >> acct_num >> pin >> balance >> first >>last)
+//         {
+//             std::cout << acct_num << ","<< pin << "," << balance<< "," << first << ","<< last;
+//         }      
+//     }
+//     else
+//         std::cerr << "Error writing to database";
+    
+//     inputfile.close();
+//     outfile.close();
+//     return 0;
+    
+// }
+
+
+int read_user_data(){
+    
+
+
+}

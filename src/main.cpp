@@ -8,6 +8,6 @@
 int main(){
     /* Initialize front end of program
     */
-    welcome_menu();
+    update_user_data("first", "last", 55444, 81.81, 1234);
     return 0;
 }
